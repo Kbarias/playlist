@@ -1,7 +1,5 @@
 #include "Set.h"
 #include <cstddef>
-#include <vector>
-#include <iostream>
 using namespace std;
 
 
@@ -32,13 +30,6 @@ int Set<ItemType>::getIndexOf(const ItemType& target) const
 
 
 
-// template<class ItemType>
-// Set<ItemType>::Set(): item_count_(0), max_items_(DEFAULT_CAPACITY)
-// {
-// }  // end default constructor
-
-
-
 template<class ItemType>
 int Set<ItemType>::getCurrentSize() const
 {
@@ -59,22 +50,16 @@ bool Set<ItemType>::add(const ItemType& newEntry)
    bool has_room_to_add = (item_count_ < max_items_);
    if (has_room_to_add)
    {
+      if (contains(newEntry))
+      {
+         return false;
+      }
       items_[item_count_] = newEntry;
       item_count_++;
    }  // end if
     
    return has_room_to_add;
 }  // end add
-
-
-/*
-// STUB
- template<class ItemType>
- bool Set<ItemType>::remove(const ItemType& anEntry)
- {
-    return false; // STUB
- }  // end remove
-*/   
  
 
 template<class ItemType>
@@ -92,17 +77,6 @@ bool Set<ItemType>::remove(const ItemType& anEntry)
 }  // end remove
 
 
-
-/*
- // STUB
- template<class ItemType>
- void Set<ItemType>::clear()
- {
-    // STUB
- }  // end clear
-*/
-
-
 template<class ItemType>
 void Set<ItemType>::clear()
 {
@@ -113,15 +87,15 @@ void Set<ItemType>::clear()
 template<class ItemType>
 bool Set<ItemType>::contains(const ItemType& anEntry) const
 {
-   return getIndexOf(anEntry) > -1;
+   return getIndexOf(anEntry) > -1; //if getIndexOf is greater than -1 that means that the entry was found, so true, else false
 }  // end contains
 
 
 
 template<class ItemType>
-std::vector<ItemType> Set<ItemType>::toVector() const
+vector<ItemType> Set<ItemType>::toVector() const
 {
-   std::vector<ItemType> bag_contents;
+   vector<ItemType> bag_contents;
    for (int i = 0; i < item_count_; i++)
       bag_contents.push_back(items_[i]);
       
