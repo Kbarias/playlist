@@ -1,15 +1,30 @@
-#ifndef SET_H
-#define SET_H
+#ifndef SET_H_
+#define SET_H_
 #include <vector>
+#include <iostream>
+#include "SetInterface.h"
+
+using namespace std;
 
 
-template<class ItemType>
-
-class Set: public SetInterface
-
+template<class ItemType>  //ItemType is just giving a general data type
+class Set : public SetInterface<ItemType>
 {
 
 public:
+	virtual int getCurrentSize() const;
+
+   	virtual bool isEmpty() const;
+
+   	virtual bool add(const ItemType& newEntry);
+
+   	virtual bool remove(const ItemType& anEntry);
+
+   	virtual void clear();
+
+   	virtual bool contains(const ItemType& anEntry) const;
+
+   	virtual std::vector<ItemType> toVector() const;
 
 private: 
 
