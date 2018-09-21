@@ -1,6 +1,7 @@
-#ifndef SONG_H
-#define SONG_H
+#ifndef SONG_H_
+#define SONG_H_
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
