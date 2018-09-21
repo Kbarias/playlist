@@ -1,18 +1,19 @@
-#ifndef PLAYLIST_H
-#define PLAYLIST_H
+#ifndef PLAYLIST_H_
+#define PLAYLIST_H_
 #include <vector>
+#include "Set.h"
+#include "Song.h"
 
 using namespace std;
 
 class PlayList
-
 {
 
 public:
 	PlayList();
 
 	PlayList(const Song& a_song);
-	
+
 	int getNumberOfSongs() const;
 
 	bool isEmpty() const;
@@ -27,7 +28,7 @@ public:
 
 private: 
 
-	Set<Song> playlist_;
+	Set<Song> playlist_; //using the template SET, we're going to plug in Song as the data type and call it "playlist"
 
 }; // end Set
 
