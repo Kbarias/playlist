@@ -1,49 +1,71 @@
-#ifndef SET_H_
-#define SET_H_
-#include <vector>
+/*
+Set.h
+Kiara Barias
+September 25, 2018
+Project 2
+Template interface of a set
+*/
+#ifndef SET_H
+#define SET_H
+#include "SetInterface.h" 
 #include <iostream>
-#include "SetInterface.h"
+#include <string>
+#include <vector>
 
-using namespace std;
-
-
-template<class ItemType>  //ItemType is just giving a general data type
-class Set : public SetInterface<ItemType>
+template <class ItemType>
+class Set: public SetInterface<ItemType> //inheriting class template
 {
+  public:
+    // default constructor to initialize
+    Set();
 
-public:
-	virtual int getCurrentSize() const;
+    /*Task: Reports the current number of objects in this bag through itemcount.  
+    Input:  None.  
+    Output: The number of objects currently in the bag. */
+    int getCurrentSize() const;
 
-   	virtual bool isEmpty() const;
+    /* Task: Sees whether this bag is empty.  
+    Input:  None.  
+    Output: True or false according to whether the bag is empty by checking if item count is equal to 0.*/
+    bool isEmpty() const;
 
-   	virtual bool add(const ItemType& newEntry);
+    /*Task: Adds a given object to this bag.  
+    Input: newEntry  is an object.  
+    Output: True or false according to whether the addition succeeds. */
+    bool add(const ItemType& newEntry);
 
-   	virtual bool remove(const ItemType& anEntry);
+    /*Task: Removes an occurrence of a particular object from this bag, if possible.  
+    Input: anEntry  is an object.  
+    Output: True or false according to whether the removal succeeds. */
+    bool remove(const ItemType& anEntry);
 
-   	virtual void clear();
+    /*Task: Removes all objects from this bag.  
+    Input:  None.  
+    Output:  makes bag clear of objects */
+    void clear();
 
-   	virtual bool contains(const ItemType& anEntry) const;
+    /* Task: Tests whether this bag contains a particular object.  
+    Input: anEntry  is an object.  
+    Output: True or false according to whether anEntry  occurs in the bag. */
+    bool contains(const ItemType& anEntry) const;
 
-   	virtual std::vector<ItemType> toVector() const;
+    /* Task: Gets all objects in this bag.  
+    Input: None. 
+    Output: A vector containing all entries currently in the bag. */
+    std::vector<ItemType> toVector() const;
 
-private: 
+  private:
+    static const int DEFAULT_SET_SIZE = 4; // for testing purposes we will keep the set small
+    ItemType items_[DEFAULT_SET_SIZE]; // array of set items
+    int item_count_;    // current count of set items
+    int max_items_;    // max capacity of the set
 
-  static const int DEFAULT_SET_SIZE = 4; // for testing purposes we will keep the set small
+    /*Task: returns the index of the element in the array items_ 
+    Input: an element
+    Output: the index of the element or if not found returns -1  */
+    int getIndexOf(const ItemType& target) const;
 
-  ItemType items_[DEFAULT_SET_SIZE]; // array of set items
+};
 
-  int item_count_;                  // current count of set items
-
-  int max_items_;                   // max capacity of the set
-
-
-
-  // post: Either returns the index of target in the array items_ 
-
-  // or -1 if the array does not contain the target
-
-  int getIndexOf(const ItemType& target) const;
-
-}; // end Set
-
-#endif /* SET_INTERFACE_H_ */
+#include "Set.cpp" 
+#endif // SET_H
