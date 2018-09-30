@@ -1,54 +1,63 @@
-#include "Song.h"
-#include <cstddef>
+/*
+Song.cpp
+Kiara Barias
+September 25, 2018
+Project 2
+Implementation of song
+*/
 #include <iostream>
-using namespace std;
+#include <string>
+#include <vector>
+#include "Song.h"
 
-Song::Song()
-{
 
-}
-
-Song::Song(const string& title, const string& author, const string& album)
+Song::Song() 
 {
-	title_ = title;
-	author_ = author;
-	album_ = album;
-}
-
-void Song::setTitle(string title) 
-{
-	title_ = title;
-}
-void Song::setAuthor(string author)
-{
-	author_ = author;
-}
-void Song::setAlbum(string album)
-{
-	album_ = album;
+  
 }
 
 
-string Song::getTitle() const
+Song::Song (const std::string& title, const std::string& author, const std::string& album) //giving initializing values
 {
-	return title_;
+  title_ = title;
+  author_ = author;
+  album_ = album;
 }
 
-string Song::getAuthor() const
+//setting functions
+void Song::setTitle(std::string title) 
 {
-	return author_;
+  title_ = title;
+}
+void Song::setAuthor(std::string author) 
+{
+  author_ = author;
+}
+void Song::setAlbum(std::string album)
+{
+  album_ = album;
 }
 
-string Song::getAlbum() const
+//getting functions
+std::string Song::getTitle() const 
 {
-	return album_;
+  return title_;
+}
+std::string Song::getAuthor() const 
+{
+  return author_;
+}
+std::string Song::getAlbum() const 
+{
+  return album_;
 }
 
-bool operator==(const Song& lhs, const Song& rhs)
+
+bool operator == (const Song& lhs, const Song& rhs) 
 {
-	if((lhs.title_ == rhs.title_) && (lhs.author_ == rhs.author_) && (lhs.album_ == rhs.album_))
-	{
-		return true;
-	}
-		return false;
+  if((lhs.title_ == rhs.title_) && (lhs.author_ == rhs.author_) && (lhs.album_ == rhs.album_)) //checks left hand side song elements and right hand song elements to see if they are the same song
+  {
+    return true;
+  }
+    return false;
 }
