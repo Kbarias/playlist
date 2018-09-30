@@ -1,47 +1,67 @@
+/*
+PlayList.cpp
+Kiara Barias
+September 25, 2018
+Project 2
+Implementation of playlist
+*/
+#include <iostream>
+#include <string>
+#include <vector>
+#include "Set.h"
+#include "Song.h"
 #include "PlayList.h"
-#include <cstddef>
-using namespace std;
 
-PlayList::PlayList()
+
+PlayList::PlayList() //constuctor
 {
 
 }
 
-PlayList::PlayList(const Song& a_song)
+
+PlayList::PlayList(const Song& a_song) 
 {
-	addSong(a_song);
-}
-	
-int PlayList::getNumberOfSongs() const
-{
-	return playlist_.getCurrentSize();
+  playlist_.add(a_song); //
 }
 
-bool PlayList::isEmpty() const
+
+
+int PlayList::getNumberOfSongs() const 
 {
-	return playlist_.isEmpty();
+  return playlist_.getCurrentSize();
 }
 
-bool PlayList::addSong(const Song& new_song)
+
+bool PlayList::isEmpty() const 
 {
-	return playlist_.add(new_song);
+  return playlist_.isEmpty();
 }
 
-bool PlayList::removeSong(const Song& a_song)
+
+bool PlayList::addSong(const Song& new_song) 
 {
-	return playlist_.remove(a_song);
+  return playlist_.add(new_song);
 }
 
-void PlayList::clearPlayList()
+
+bool PlayList::removeSong(const Song& a_song) 
 {
-	return playlist_.clear();
+  return playlist_.remove(a_song);
 }
 
-void PlayList::displayPlayList() const
+
+void PlayList::clearPlayList() 
 {
-	vector<Song> output = playlist_.toVector();
-	for(int i = 0; i < output.size(); i++)
-	{
-		cout << output[i].getTitle()<< " " << output[i].getAuthor()<< " " << output[i].getAlbum(); 
-	}
+  playlist_.clear();
+}
+
+
+void PlayList::displayPlayList() const 
+{
+  std::vector<Song> output = playlist_.toVector(); //puts the stuff in the playlist into a vector
+  for(int i = 0; i < playlist_.getCurrentSize(); i++)
+  {
+    std::cout << "* Title: " << output[i].getTitle()<< " * " << "Author: " << output[i].getAuthor()<< " * " << "Album: " << output[i].getAlbum() << " *"<< std::endl;
+    }   
+  std::cout << "End of playlist" << std::endl;
 }
