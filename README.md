@@ -1,5 +1,5 @@
 # playlist
-
+class project:
 Class Set
 You are given an interface: SetInterface.h (just like BagInterface.h but it does not allow duplicates)
 This is a public interface, and completely specifies what the Set class operations must be.
